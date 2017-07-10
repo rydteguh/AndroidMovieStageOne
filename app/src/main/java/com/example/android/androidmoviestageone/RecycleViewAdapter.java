@@ -28,7 +28,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewHolder> 
     @Override
     public RecycleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_view_list, null);
-        RecycleViewHolder rcv = new RecycleViewHolder(layoutView);
+        RecycleViewHolder rcv = new RecycleViewHolder(layoutView, this.context);
         return rcv;
 
     }
@@ -36,6 +36,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewHolder> 
     @Override
     public void onBindViewHolder(RecycleViewHolder holder, int position) {
         Picasso.with(context).load(itemList.get(position).getPhoto()).into(holder.moviePhoto);
+
     }
 
     @Override

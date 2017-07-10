@@ -10,6 +10,7 @@ public class MovieObject {
     private String photo;
     private int id;
 
+
     public MovieObject(String name, String photo, int id) {
         this.name = name;
         this.photo = photo;

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@color/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:title="@string/app_name" />
+
+    <TextView
+        android:id="@+id/movie_title_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBlueGreen"
+        android:gravity="center_vertical"
+        android:textSize="35sp"
+        android:textColor="@color/colorWhite"
+        android:layout_weight="0.20" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+            android:id="@+id/movie_photo_detail"
+            android:layout_width="150dp"
+            android:layout_height="170dp" />
+
+        <TextView
+            android:id="@+id/movie_year_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/movie_photo_detail"/>
+
+        <TextView
+            android:id="@+id/movie_duration_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/movie_photo_detail"
+            android:layout_below="@+id/movie_year_detail"/>
+
+        <TextView
+            android:id="@+id/movie_rating_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/movie_photo_detail"
+            android:layout_below="@+id/movie_duration_detail"/>
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/movie_synopsis_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>
