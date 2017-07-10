@@ -1,5 +1,6 @@
 package com.example.android.androidmoviestageone;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -9,6 +10,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.android.androidmoviestageone.utilities.MovieJsonUtils;
+import com.example.android.androidmoviestageone.utilities.NetworkUtils;
+
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,15 +33,47 @@ public class MainActivity extends AppCompatActivity {
         topToolBar.setLogo(R.mipmap.ic_launcher);
         topToolBar.setLogoDescription(getResources().getString(R.string.logo_desc));
 
-        List<ItemObject> rowListItem = getAllItemList();
-        lLayout = new GridLayoutManager(MainActivity.this, 4);
+        final List<MovieObject> rowListItem = new ArrayList<>();
+        lLayout = new GridLayoutManager(MainActivity.this, 2);
 
         RecyclerView rView = (RecyclerView) findViewById(R.id.recycler_view);
         rView.setHasFixedSize(true);
         rView.setLayoutManager(lLayout);
 
-        RecycleViewAdapter rcAdapter = new RecycleViewAdapter(MainActivity.this, rowListItem);
+        final RecycleViewAdapter rcAdapter = new RecycleViewAdapter(MainActivity.this, rowListItem);
         rView.setAdapter(rcAdapter);
+
+        new AsyncTask<String, Void, List<MovieObject>>() {
+
+            @Override
+            protected List<MovieObject> doInBackground(String... params) {
+
+
+                URL popularMovieUrl = NetworkUtils.buildUrl(NetworkUtils.POPULAR_MOVIE_URL);
+
+                try {
+                    String jsonPopularMovieResponse = NetworkUtils
+                            .getResponseFromHttpUrl(popularMovieUrl);
+
+                    List<MovieObject> simpleJsonPopularMovieData = MovieJsonUtils
+                            .getPopularMovieStringsFromJson(MainActivity.this, jsonPopularMovieResponse);
+
+                    return simpleJsonPopularMovieData;
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return null;
+                }
+
+            }
+
+            @Override
+            protected void onPostExecute(List<MovieObject> movieObjects) {
+                rowListItem.clear();
+                rowListItem.addAll(movieObjects);
+                rcAdapter.notifyDataSetChanged();
+            }
+        }.execute();
     }
 
     @Override
@@ -67,26 +104,5 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private List<ItemObject> getAllItemList() {
 
-        List<ItemObject> allItems = new ArrayList<ItemObject>();
-        allItems.add(new ItemObject("United States", R.mipmap.ic_launcher));
-        allItems.add(new ItemObject("Canada", R.mipmap.ic_launcher));
-        allItems.add(new ItemObject("United Kingdom", R.mipmap.ic_launcher));
-        allItems.add(new ItemObject("Germany", R.mipmap.ic_launcher));
-        allItems.add(new ItemObject("Sweden", R.mipmap.ic_launcher));
-        allItems.add(new ItemObject("United Kingdom", R.mipmap.ic_launcher));
-        allItems.add(new ItemObject("Germany", R.mipmap.ic_launcher));
-        allItems.add(new ItemObject("Sweden", R.mipmap.ic_launcher));
-        allItems.add(new ItemObject("United States", R.mipmap.ic_launcher));
-        allItems.add(new ItemObject("Canada", R.mipmap.ic_launcher));
-        allItems.add(new ItemObject("United Kingdom", R.mipmap.ic_launcher));
-        allItems.add(new ItemObject("Germany", R.mipmap.ic_launcher));
-        allItems.add(new ItemObject("Sweden", R.mipmap.ic_launcher));
-        allItems.add(new ItemObject("United Kingdom", R.mipmap.ic_launcher));
-        allItems.add(new ItemObject("Germany", R.mipmap.ic_launcher));
-        allItems.add(new ItemObject("Sweden", R.mipmap.ic_launcher));
-
-        return allItems;
-    }
 }

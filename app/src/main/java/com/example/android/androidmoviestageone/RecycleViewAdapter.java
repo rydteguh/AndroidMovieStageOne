@@ -6,16 +6,20 @@ package com.example.android.androidmoviestageone;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewHolder> {
 
-    private List<ItemObject> itemList;
+    private List<MovieObject> itemList;
     private Context context;
 
-    public RecycleViewAdapter(Context context, List<ItemObject> itemList) {
+    public RecycleViewAdapter(Context context, List<MovieObject> itemList) {
         this.itemList = itemList;
         this.context = context;
     }
@@ -23,13 +27,15 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewHolder> 
 
     @Override
     public RecycleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_view_list, null);
+        RecycleViewHolder rcv = new RecycleViewHolder(layoutView);
+        return rcv;
+
     }
 
     @Override
     public void onBindViewHolder(RecycleViewHolder holder, int position) {
-        holder.countryName.setText(itemList.get(position).getName());
-        holder.countryPhoto.setImageResource(itemList.get(position).getPhoto());
+        Picasso.with(context).load(itemList.get(position).getPhoto()).into(holder.moviePhoto);
     }
 
     @Override
