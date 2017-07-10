@@ -31,7 +31,7 @@ import java.util.Scanner;
  */
 public final class NetworkUtils {
 
-    public static final String TAG = NetworkUtils.class.getSimpleName();
+    private static final String TAG = NetworkUtils.class.getSimpleName();
 
     public static final String POPULAR_MOVIE_URL =
             "https://api.themoviedb.org/3/movie/popular";
@@ -39,7 +39,11 @@ public final class NetworkUtils {
     public static final String TOP_RATED_URL =
             "https://api.themoviedb.org/3/movie/top_rated";
 
-    public static final String API_KEY =
+    public static final String MOVIE_DETAIL_URL =
+            "https://api.themoviedb.org/3/movie/";
+
+
+    private static final String API_KEY =
             "1094ec7156b18dd96416907930d760fd";
 
 

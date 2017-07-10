@@ -36,6 +36,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewHolder> 
     @Override
     public void onBindViewHolder(RecycleViewHolder holder, int position) {
         Picasso.with(context).load(itemList.get(position).getPhoto()).into(holder.moviePhoto);
+        holder.setId(itemList.get(position).getId());
 
     }
 

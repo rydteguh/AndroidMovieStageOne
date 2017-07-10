@@ -44,6 +44,23 @@ public class MovieJsonUtils {
         return movieResponse;
     }
 
+    public static MovieObject getMovieDetailFromJson(Context context, String movieJsonStr)
+            throws JSONException{
+
+        MovieObject movieResponse = new MovieObject();
+
+        JSONObject movieJson = new JSONObject(movieJsonStr);
+
+        movieResponse.setId(movieJson.getInt("id"));
+        movieResponse.setName(movieJson.getString("title"));
+        movieResponse.setPhoto("http://image.tmdb.org/t/p/w185" + movieJson.getString("backdrop_path"));
+        movieResponse.setOverview(movieJson.getString("overview"));
+        movieResponse.setRating(movieJson.getString("vote_average"));
+        movieResponse.setRelease_date(movieJson.getString("release_date"));
+
+        return movieResponse;
+    }
+
 
     public static ContentValues[] getFullWeatherDataFromJson(Context context, String forecastJsonStr) {
         /** This will be implemented in a future lesson **/

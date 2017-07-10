@@ -17,7 +17,9 @@ import android.widget.Toast;
 public class RecycleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     public TextView movieName;
     public ImageView moviePhoto;
-    public Context context;
+    private Context context;
+    public int id;
+
 
     public RecycleViewHolder(View itemView, Context context) {
         super(itemView);
@@ -25,12 +27,18 @@ public class RecycleViewHolder extends RecyclerView.ViewHolder implements View.O
         this.context = context;
         //movieName = (TextView)itemView.findViewById(R.id.movie_name);
         moviePhoto = (ImageView)itemView.findViewById(R.id.movie_photo);
+
+    }
+
+    public void setId(int id){
+        this.id = id;
     }
 
     @Override
     public void onClick(View view) {
         Toast.makeText(view.getContext(), "Clicked Country Position = " + getPosition(), Toast.LENGTH_SHORT).show();
         Intent to_detail = new Intent(context,MovieDetail.class);
+        to_detail.putExtra("id", this.id);
         context.startActivity(to_detail);
     }
 
