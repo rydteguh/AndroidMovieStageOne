@@ -28,6 +28,8 @@ public class MovieDetail extends AppCompatActivity{
     private TextView movieReleaseDateDetail;
     private TextView movieRatingDetail;
     private TextView movieOverviewDetail;
+    private TextView movieDurationDetail;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class MovieDetail extends AppCompatActivity{
         movieReleaseDateDetail = (TextView) findViewById(R.id.movie_year_detail);
         movieRatingDetail = (TextView) findViewById(R.id.movie_rating_detail);
         movieOverviewDetail = (TextView) findViewById(R.id.movie_synopsis_detail);
+        movieDurationDetail =  (TextView) findViewById(R.id.movie_duration_detail);
         movieTitle = (TextView) findViewById(R.id.movie_title_detail);
 
         new AsyncTask<String, Void, MovieObject>() {
@@ -78,6 +81,7 @@ public class MovieDetail extends AppCompatActivity{
                 movieRatingDetail.setText(movieObjects.getRating());
                 movieReleaseDateDetail.setText(movieObjects.getRelease_date());
                 movieTitle.setText(movieObjects.getName());
+                movieDurationDetail.setText(movieObjects.getDuration());
             }
         }.execute();
 

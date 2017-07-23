@@ -12,6 +12,8 @@ public class MovieObject {
     private String release_date;
     private String overview;
     private String rating;
+    private String duration;
+
 
 
     public String getRelease_date() {
@@ -48,6 +50,15 @@ public class MovieObject {
     }
 
     public MovieObject() {
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    public String getDuration() {
+
+        return duration;
     }
 
     public String getName() {

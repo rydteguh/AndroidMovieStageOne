@@ -156,8 +156,11 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 protected void onPostExecute(List<MovieObject> movieObjects) {
                     rowListItem.clear();
-                    rowListItem.addAll(movieObjects);
-                    rcAdapter.notifyDataSetChanged();
+
+                    if(movieObjects != null) {
+                        rowListItem.addAll(movieObjects);
+                        rcAdapter.notifyDataSetChanged();
+                    }
                 }
             }.execute();
             return true;

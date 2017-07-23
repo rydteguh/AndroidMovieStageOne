@@ -16,6 +16,8 @@ package com.example.android.androidmoviestageone.utilities;
  * limitations under the License.
  */
 
+
+
 import android.net.Uri;
 import android.util.Log;
 
@@ -43,10 +45,11 @@ public final class NetworkUtils {
             "https://api.themoviedb.org/3/movie/";
 
 
+//    private static final String API_KEY =
+//            "1094ec7156b18dd96416907930d760fd";
+
     private static final String API_KEY =
             "1094ec7156b18dd96416907930d760fd";
-
-
 
 
 

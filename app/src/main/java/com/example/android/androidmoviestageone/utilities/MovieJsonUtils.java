@@ -57,6 +57,7 @@ public class MovieJsonUtils {
         movieResponse.setOverview(movieJson.getString("overview"));
         movieResponse.setRating(movieJson.getString("vote_average"));
         movieResponse.setRelease_date(movieJson.getString("release_date"));
+        movieResponse.setDuration(movieJson.getString("runtime") + "min");
 
         return movieResponse;
     }
